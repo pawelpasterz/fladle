@@ -22,25 +22,26 @@ open class FlankGradleExtension @Inject constructor(objects: ObjectFactory) : Fl
   @get:Input
   val flankVersion: Property<String> = objects.property(String::class.java).convention("20.08.3")
   // Project id is automatically discovered by default. Use this to override the project id.
-  override var projectId: Property<String> = objects.property()
+  override val projectId: Property<String> = objects.property()
+  @get:Input
   override val serviceAccountCredentials: RegularFileProperty = objects.fileProperty()
-  override var useOrchestrator: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
-  override var autoGoogleLogin: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
-  override var devices: ListProperty<Map<String, String>> = (objects.listProperty(Map::class.java) as ListProperty<Map<String, String>>).convention(listOf(mapOf("model" to "NexusLowRes", "version" to "28")))
+  override val useOrchestrator: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val autoGoogleLogin: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val devices: ListProperty<Map<String, String>> = (objects.listProperty(Map::class.java) as ListProperty<Map<String, String>>).convention(listOf(mapOf("model" to "NexusLowRes", "version" to "28")))
 
   // https://cloud.google.com/sdk/gcloud/reference/firebase/test/android/run
-  override var testTargets: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
+  override val testTargets: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
 
-  override var testShards: Property<Int> = objects.property()
-  override var shardTime: Property<Int> = objects.property()
-  override var repeatTests: Property<Int> = objects.property()
+  override val testShards: Property<Int> = objects.property()
+  override val shardTime: Property<Int> = objects.property()
+  override val repeatTests: Property<Int> = objects.property()
 
   // Shard Android tests by time using historical run data. The amount of shards used is set by `testShards`.
-  override var smartFlankGcsPath: Property<String> = objects.property()
+  override val smartFlankGcsPath: Property<String> = objects.property()
 
-  override var resultsHistoryName: Property<String> = objects.property()
+  override val resultsHistoryName: Property<String> = objects.property()
 
-  override var flakyTestAttempts: Property<Int> = objects.property(Int::class.java).convention(0)
+  override val flakyTestAttempts: Property<Int> = objects.property(Int::class.java).convention(0)
 
   // Variant to use for configuring output APK.
   @get:Input
@@ -57,51 +58,51 @@ open class FlankGradleExtension @Inject constructor(objects: ObjectFactory) : Fl
   @get:Optional
   val instrumentationApk: Property<String> = objects.property()
 
-  override var directoriesToPull: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
+  override val directoriesToPull: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
 
-  override var filesToDownload: ListProperty<String> = objects.listProperty(String::class.java)
+  override val filesToDownload: ListProperty<String> = objects.listProperty(String::class.java)
 
-  override var environmentVariables: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
+  override val environmentVariables: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
 
-  override var recordVideo: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
+  override val recordVideo: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
 
-  override var performanceMetrics: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
+  override val performanceMetrics: Property<Boolean> = objects.property(Boolean::class.java).convention(true)
 
-  override var resultsBucket: Property<String> = objects.property()
+  override val resultsBucket: Property<String> = objects.property()
 
-  override var keepFilePath: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val keepFilePath: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
 
-  override var resultsDir: Property<String> = objects.property()
+  override val resultsDir: Property<String> = objects.property()
 
-  override var additionalTestApks: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
+  override val additionalTestApks: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
 
   override val runTimeout: Property<String> = objects.property()
 
-  override var ignoreFailedTests: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val ignoreFailedTests: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
 
-  override var disableSharding: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val disableSharding: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
 
-  override var smartFlankDisableUpload: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
+  override val smartFlankDisableUpload: Property<Boolean> = objects.property(Boolean::class.java).convention(false)
 
-  override var testRunnerClass: Property<String> = objects.property()
+  override val testRunnerClass: Property<String> = objects.property()
 
   override val localResultsDir: Property<String> = objects.property()
 
-  override var numUniformShards: Property<Int> = objects.property()
+  override val numUniformShards: Property<Int> = objects.property()
 
-  override var clientDetails: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
+  override val clientDetails: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
 
-  override var testTargetsAlwaysRun: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
+  override val testTargetsAlwaysRun: ListProperty<String> = objects.listProperty(String::class.java).convention(emptyList())
 
-  override var otherFiles: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
+  override val otherFiles: MapProperty<String, String> = objects.mapProperty(String::class.java, String::class.java).convention(emptyMap())
 
-  override var networkProfile: Property<String> = objects.property()
+  override val networkProfile: Property<String> = objects.property()
 
-  override var roboScript: Property<String> = objects.property()
+  override val roboScript: Property<String> = objects.property()
 
-  override var roboDirectives: ListProperty<List<String>> = (objects.listProperty(List::class.java) as ListProperty<List<String>>).convention(emptyList())
+  override val roboDirectives: ListProperty<List<String>> = (objects.listProperty(List::class.java) as ListProperty<List<String>>).convention(emptyList())
 
-  override var testTimeout: Property<String> = objects.property()
+  override val testTimeout: Property<String> = objects.property()
 
   override val outputStyle: Property<String> = objects.property<String>().convention("single")
 
